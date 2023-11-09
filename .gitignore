@@ -6,4 +6,6 @@ terraform.tfstate.backup
 *.tfvars
 !template.tfvars
 .terraform.tfstate.lock.info
+
+# Misc
 log.txt
