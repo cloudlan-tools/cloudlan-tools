@@ -1,0 +1,16 @@
+<mxfile host="65bd71144e">
+    <diagram id="rsiAFun3ezzwguno7eb0" name="Side-1">
+        <mxGraphModel dx="1512" dy="1042" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Second priority&lt;br&gt;Pterodactyl Panel&lt;br&gt;Terraform&lt;br&gt;always on ~" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-371" y="-173" width="159" height="92" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="First Priority&lt;br&gt;Pterodactyl Wings&lt;br&gt;Terraform&lt;br&gt;On demand scalable" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-53" y="-173" width="159" height="92" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
