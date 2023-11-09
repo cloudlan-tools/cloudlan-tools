@@ -1,5 +1,5 @@
 terraform {
-    required_providers {
+  required_providers {
     hcloud = {
       source  = "hetznercloud/hcloud"
       version = ">=1.44"
@@ -7,10 +7,17 @@ terraform {
   }
 }
 
+# SSH key for the Hetzner Cloud server
+resource "tls_private_key" "ssh" {
+  algorithm = "RSA"
+  rsa_bits  = "4096"
+}
+
 # Create a new Hetzner Cloud SSH key
 resource "hcloud_ssh_key" "default" {
   name       = "wing-demo-ssh-key"
   public_key = tls_private_key.ssh.public_key_openssh
+  depends_on = [tls_private_key.ssh]
 }
 
 # Create a new Hetzner Cloud server
@@ -27,8 +34,9 @@ resource "hcloud_server" "web" {
     ipv6_enabled = true
   }
   keep_disk = true
-  user_data = templatefile("${path.module}/configs/wing-cloud-init.yml", {
+  user_data = templatefile("${path.module}/../../cloud-init/wing.yml", {
     username = "cloudlan"
     ssh_key  = tls_private_key.ssh.public_key_openssh
   })
+  depends_on = [hcloud_ssh_key.default]
 }
