@@ -15,3 +15,20 @@
 terraform init
 terraform apply -var-file tfvars/data.tfvars
 ```
+
+## Log in
+
+```bash
+terraform output ssh_private_key > server.key
+sudo chmod 700 server.key
+echo IP address: $(terraform output ip_address)
+ssh -i server.key <username>@<IP address>
+```
+
+*Username is by default `cloudlan`*
+
+To remove a known host do:
+
+```bash
+ssh-keygen -R "<IP address>"
+```

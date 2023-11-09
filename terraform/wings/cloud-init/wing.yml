@@ -33,7 +33,7 @@ runcmd:
   - sed -i '$a AllowUsers ${username}' /etc/ssh/sshd_config
   # Pterodactyl install
   - mkdir -p /etc/pterodactyl
-  - wget --output-document=/usr/local/bin/wings https://github.com/pterodactyl/wings/releases/latest/download/wings_linux_$([[ "$(uname -m)" == "x86_64" ]] && echo "amd64" || echo "arm64")
+  - curl -o /usr/local/bin/wings https://github.com/pterodactyl/wings/releases/latest/download/wings_linux_amd64
   - sleep 1
   - chmod u+x /usr/local/bin/wings
   - reboot
