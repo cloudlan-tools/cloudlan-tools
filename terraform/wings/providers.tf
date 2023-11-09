@@ -12,12 +12,17 @@ terraform {
     #   source  = "cloudflare/cloudflare"
     #   version = ">=4.18"
     # }
+
+    # TLS Provider
+    tls = {
+      source  = "hashicorp/tls"
+      version = ">=4.0"
+    }
   }
 }
 
 # Configure the Hetzner Cloud Provider
 provider "hcloud" {
-  alias = "hcloud"
   token = var.hcloud_token
 }
 
