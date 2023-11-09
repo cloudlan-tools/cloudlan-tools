@@ -1,6 +1,6 @@
 # Terraform elements
-.terraform/*
-# terraform.tfstate
-# terraform.tfstate.backup
+# .terraform/*
+terraform.tfstate
+terraform.tfstate.backup
 *.tfvars
 !template.tfvars
