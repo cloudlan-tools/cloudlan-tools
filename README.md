@@ -21,7 +21,7 @@ terraform destroy -var-file tfvars/data.tfvars
 ## Log in
 
 ```bash
-terraform output -raw ssh_private_key > server.key && sudo chmod 700 server.ke
+terraform output -raw ssh_private_key > server.key && sudo chmod 700 server.key
 ssh -i server.key <username>@$(terraform output -raw ip_address)
 ssh -i server.key cloudlan@$(terraform output -raw ip_address)
 ```
