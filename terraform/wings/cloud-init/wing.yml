@@ -10,7 +10,6 @@ packages:
   - fail2ban
   - ca-certificates
   - curl
-  - wget
   - gnupg
   - lsb-release
   - nano
@@ -34,6 +33,5 @@ runcmd:
   # Pterodactyl install
   - mkdir -p /etc/pterodactyl
   - curl -L -o /usr/local/bin/wings https://github.com/pterodactyl/wings/releases/latest/download/wings_linux_amd64
-  - sleep 1
   - chmod u+x /usr/local/bin/wings
   - reboot
