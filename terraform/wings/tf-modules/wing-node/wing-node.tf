@@ -19,17 +19,17 @@ resource "tls_private_key" "ssh" {
 
 # Create a new Hetzner Cloud SSH key
 resource "hcloud_ssh_key" "default" {
-  name       = "wing-demo-ssh-key"
+  name       = "${var.node_name}-ssh-key"
   public_key = tls_private_key.ssh.public_key_openssh
   depends_on = [tls_private_key.ssh]
 }
 
 # Create a new Hetzner Cloud server
 resource "hcloud_server" "web" {
-  name        = "wing-demo"
+  name        = var.node_name
   image       = "docker-ce"
-  server_type = "ccx13"
-  location    = "hel1"
+  server_type = var.node_server_type
+  location    = var.node_location
   ssh_keys = [
     hcloud_ssh_key.default.id
   ]
@@ -39,7 +39,7 @@ resource "hcloud_server" "web" {
   }
   keep_disk = true
   user_data = templatefile("${path.module}/../../cloud-init/wing.yml", {
-    username = "cloudlan"
+    username = var.node_username
     ssh_key  = tls_private_key.ssh.public_key_openssh
   })
   depends_on = [hcloud_ssh_key.default]
