@@ -43,9 +43,18 @@ variable "node_image" {
 
 variable "ssh_key_algorithm" {
     type    = string
-    default = "ED25519"
+    default = "RSA"
     validation {
-        condition = can(regex("ED25519", var.ssh_key_algorithm))
-        error_message = "Ed25519 is recommended and should not be change unless you know what you are doing."
+        condition = can(regex("RSA", var.ssh_key_algorithm))
+        error_message = "Only RSA is supported"
     }
+}
+
+variable "ssh_key_rsa_bits" {
+    type    = number
+    default = 4096
+    validation {
+        condition = can(regex("4096", var.ssh_key_rsa_bits))
+        error_message = "4096 is recomended"
+    }  
 }

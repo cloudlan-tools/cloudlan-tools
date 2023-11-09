@@ -14,6 +14,7 @@ terraform {
 # SSH key for the Hetzner Cloud server
 resource "tls_private_key" "ssh" {
   algorithm = var.ssh_key_algorithm
+  rsa_bits  = var.ssh_key_rsa_bits
 }
 
 # Create a new Hetzner Cloud SSH key
