@@ -21,3 +21,13 @@ variable "node_server_type" {
   type    = string
   default = "ccx13"
 }
+
+variable "node_ipv4_enabled" {
+  type    = bool
+  default = true 
+}
+
+variable "node_ipv6_enabled" {
+  type    = bool
+  default = false 
+}

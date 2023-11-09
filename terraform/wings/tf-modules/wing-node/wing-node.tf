@@ -34,8 +34,8 @@ resource "hcloud_server" "web" {
     hcloud_ssh_key.default.id
   ]
   public_net {
-    ipv4_enabled = true
-    ipv6_enabled = true
+    ipv4_enabled = var.node_ipv4_enabled
+    ipv6_enabled = var.node_ipv6_enabled
   }
   keep_disk = true
   user_data = templatefile("${path.module}/../../cloud-init/wing.yml", {
