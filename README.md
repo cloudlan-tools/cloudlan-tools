@@ -13,7 +13,9 @@
 
 ```bash
 terraform init
+terraform plan -var-file tfvars/data.tfvars
 terraform apply -var-file tfvars/data.tfvars
+terraform destroy -var-file tfvars/data.tfvars
 ```
 
 ## Log in

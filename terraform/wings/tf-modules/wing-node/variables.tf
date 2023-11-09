@@ -31,3 +31,21 @@ variable "node_ipv6_enabled" {
   type    = bool
   default = false 
 }
+
+variable "node_image" {
+  type    = string
+  default = "docker-ce"
+  validation {
+    condition = can(regex("docker-ce", var.node_image))
+    error_message = "Only docker-ce is supported"
+  }
+}
+
+variable "ssh_key_algorithm" {
+    type    = string
+    default = "ED25519"
+    validation {
+        condition = can(regex("ED25519", var.ssh_key_algorithm))
+        error_message = "Ed25519 is recommended and should not be change unless you know what you are doing."
+    }
+}
