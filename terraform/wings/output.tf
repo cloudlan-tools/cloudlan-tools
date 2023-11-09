@@ -8,3 +8,7 @@ output "ssh_private_key" {
   value     = module.wing-node.ssh_private_key
   sensitive = true
 }
+
+output "node_username" {
+  value = module.wing-node.node_username  
+}
