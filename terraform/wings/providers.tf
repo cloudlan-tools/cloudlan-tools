@@ -8,10 +8,12 @@ terraform {
       source  = "hetznercloud/hcloud"
       version = ">=1.44"
     }
-    # cloudflare = {
-    #   source  = "cloudflare/cloudflare"
-    #   version = ">=4.18"
-    # }
+
+    # Cloudflare Provider
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = ">=4.18"
+    }
 
     # TLS Provider
     tls = {
@@ -26,7 +28,7 @@ provider "hcloud" {
   token = var.hcloud_token
 }
 
-# # Configure the Cloudflare Provider
-# provider "cloudflare" {
-#   api_key = var.cloudflare_api_token
-# }
+# Configure the Cloudflare Provider
+provider "cloudflare" {
+  api_key = var.cloudflare_api_token
+}
