@@ -1,3 +1,12 @@
+terraform {
+    required_providers {
+    hcloud = {
+      source  = "hetznercloud/hcloud"
+      version = ">=1.44"
+    }
+  }
+}
+
 # Create a new Hetzner Cloud SSH key
 resource "hcloud_ssh_key" "default" {
   name       = "wing-demo-ssh-key"
