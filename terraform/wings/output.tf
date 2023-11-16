@@ -10,5 +10,5 @@ output "ssh_private_key" {
 }
 
 output "node_username" {
-  value = module.wing-node.node_username  
+  value = module.wing-node.node_username
 }

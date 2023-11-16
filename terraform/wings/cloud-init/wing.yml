@@ -1,7 +1,7 @@
 #cloud-config
 users:
   - name: ${username}
-    groups: users, admin, docker
+    groups: users, admin, docker, wings
     sudo: ALL=(ALL) NOPASSWD:ALL
     shell: /bin/bash
     ssh_authorized_keys:
@@ -32,6 +32,39 @@ runcmd:
   - sed -i '$a AllowUsers ${username}' /etc/ssh/sshd_config
   # Pterodactyl install
   - mkdir -p /etc/pterodactyl
+  - chown root:wings -R /etc/pterodactyl
   - curl -L -o /usr/local/bin/wings https://github.com/pterodactyl/wings/releases/latest/download/wings_linux_amd64
+  - chown root:wings /usr/local/bin/wings
   - chmod u+x /usr/local/bin/wings
+  - chmod g+x /usr/local/bin/wings
+  # Setting up SSL
+  - certbot certonly --standalone --agree-tos --no-eff-email --email ${email} -d ${domain}
+  # Configuring wings
+  - wings configure --panel-url ${pterodactyl_panel_url} --token ${pterodactyl_panel_api_key} --node ${node_id}
+  # Finishing up
+  - systemctl enable wings
   - reboot
+write_files:
+  - path: /etc/systemd/system/wings.service
+    permissions: 0644
+    owner: root
+    content: |
+      [Unit]
+      Description=Pterodactyl Wings Daemon
+      After=docker.service
+      Requires=docker.service
+      PartOf=docker.service
+
+      [Service]
+      User=root
+      WorkingDirectory=/etc/pterodactyl
+      LimitNOFILE=4096
+      PIDFile=/var/run/wings/daemon.pid
+      ExecStart=/usr/local/bin/wings
+      Restart=on-failure
+      StartLimitInterval=180
+      StartLimitBurst=30
+      RestartSec=5s
+
+      [Install]
+      WantedBy=multi-user.target
