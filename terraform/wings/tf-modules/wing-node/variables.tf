@@ -56,5 +56,5 @@ variable "dns_domain_name" {
 
 variable "dns_a_record" {
   type = string
-  default = "wing-demo"
+  default = "wing-demo-node"
 }

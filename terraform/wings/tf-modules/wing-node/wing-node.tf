@@ -60,9 +60,11 @@ data "cloudflare_zones" "example" {
 resource "cloudflare_record" "node_dns_a_record" {
   allow_overwrite = true
   zone_id         = data.cloudflare_zones.example.zones.0.id
-  name            = "${var.dns_a_record}.${var.dns_domain_name}"
+  name            = var.dns_a_record
   value           = hcloud_server.node.ipv4_address
   type            = "A"
-  ttl             = 30
+  ttl             = "60"
   proxied         = false
+
+  depends_on = [ hcloud_server.node ]
 }
