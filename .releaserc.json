@@ -1,0 +1,34 @@
+{
+    "branches": [
+        "main",
+        {
+            "name": "develop",
+            "prerelease": "r"
+        }
+    ],
+    "plugins": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/release-notes-generator",
+        [
+            "@semantic-release/github",
+            {
+                "successComment": true
+            }
+        ],
+        [
+            "@semantic-release/npm",
+            {
+                "npmPublish": false
+            }
+        ],
+        [
+            "@semantic-release/git",
+            {
+                "assets": [
+                    "package.json"
+                ],
+                "message": "CI bot: [skip ci]\n\n${nextRelease.notes}"
+            }
+        ]
+    ]
+}
