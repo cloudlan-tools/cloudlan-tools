@@ -5,7 +5,16 @@
 
 version: 2
 updates:
-  - package-ecosystem: "terraform" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  # Update GitHub actions in workflows
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    # Every weekday
     schedule:
-      interval: "daily"
+      interval: 'daily'
+
+  # Enable version updates for Terraform wings
+  - package-ecosystem: 'terraform'
+    directory: '/terraform/wings'
+    # Every weekday
+    schedule:
+      interval: 'daily'
