@@ -9,6 +9,12 @@ output "ssh_private_key" {
   sensitive = true
 }
 
+# Output the servers username
 output "node_username" {
   value = var.node_username    
+}
+
+# Output of pterodactyl node id
+output "pterodactyl_node_id" {
+  value = restapi_object.pterodactyl_node.id
 }

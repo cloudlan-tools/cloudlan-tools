@@ -8,6 +8,12 @@ terraform {
       source  = "hashicorp/tls"
       version = ">=4.0"
     }
+
+    # REST API Provider
+    restapi = {
+      source  = "Mastercard/restapi"
+      version = ">=1.18.2"
+    }
   }
 }
 
@@ -38,8 +44,17 @@ resource "hcloud_server" "web" {
   }
   keep_disk = true
   user_data = templatefile("${path.module}/../../cloud-init/wing.yml", {
-    username = var.node_username
-    ssh_key  = tls_private_key.ssh.public_key_openssh
+    username                  = var.node_username
+    ssh_key                   = tls_private_key.ssh.public_key_openssh
+    email                     = var.letsencrypt_email
+    domain                    = var.node_fqdn
+    pterodactyl_panel_url     = var.pterodactyl_panel_url
+    pterodactyl_panel_api_key = var.pterodactyl_panel_api_key
+    node_id                   = restapi_object.pterodactyl_node.id
   })
-  depends_on = [hcloud_ssh_key.default]
+
+  depends_on = [
+    hcloud_ssh_key.default,
+    restapi_object.pterodactyl_node,
+  ]
 }
