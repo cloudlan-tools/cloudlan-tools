@@ -143,3 +143,12 @@ variable "pterodactyl_wings_daemon_listen" {
   default     = 8080
   description = "Port on which the daemon will listen for requests."
 }
+
+variable "dns_domain_name" {
+  type = string  
+}
+
+variable "dns_a_record" {
+  type = string
+  default = "wing-demo-node"
+}

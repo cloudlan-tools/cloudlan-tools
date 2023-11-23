@@ -1,13 +1,21 @@
 terraform {
   required_providers {
+    # Hetzner Cloud Provider
     hcloud = {
       source  = "hetznercloud/hcloud"
       version = ">=1.44"
     }
+    
+    # TLS Provider
     tls = {
       source  = "hashicorp/tls"
       version = ">=4.0"
     }
+    
+    # Cloudflare Provider
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = ">=4.18"
 
     # REST API Provider
     restapi = {
@@ -30,7 +38,7 @@ resource "hcloud_ssh_key" "default" {
 }
 
 # Create a new Hetzner Cloud server
-resource "hcloud_server" "web" {
+resource "hcloud_server" "node" {
   name        = var.node_name
   image       = "docker-ce"
   server_type = var.node_server_type
@@ -57,4 +65,22 @@ resource "hcloud_server" "web" {
     hcloud_ssh_key.default,
     restapi_object.pterodactyl_node,
   ]
+}
+
+data "cloudflare_zones" "domain_name_zone" {
+  filter {
+    name = var.dns_domain_name
+  }
+}
+
+resource "cloudflare_record" "node_dns_a_record" {
+  allow_overwrite = true
+  zone_id         = data.cloudflare_zones.example.zones.0.id
+  name            = var.dns_a_record
+  value           = hcloud_server.node.ipv4_address
+  type            = "A"
+  ttl             = "60"
+  proxied         = false
+
+  depends_on = [ hcloud_server.node ]
 }
