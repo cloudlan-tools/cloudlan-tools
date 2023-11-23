@@ -12,22 +12,17 @@
         [
             "@semantic-release/github",
             {
-                "successComment": true
+                "successComment": false
             }
         ],
-        [
-            "@semantic-release/npm",
-            {
-                "npmPublish": false
-            }
-        ],
+        "@semantic-release/npm",
         [
             "@semantic-release/git",
             {
                 "assets": [
                     "package.json"
                 ],
-                "message": "CI bot: [skip ci]\n\n${nextRelease.notes}"
+                "message": "CI bot: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
             }
         ]
     ]
