@@ -30,3 +30,12 @@ To remove a known host do:
 ```bash
 ssh-keygen -R "<IP address>"
 ```
+
+## Disclaimers
+
+### Pterodactyl API key
+
+The Pterodactyl API key, is sent of to the Hetzner node, through cloud-init.  
+This is not an optimal secure way of doing it, but it is the only way I have found to do it. 
+
+We therefore *recommend* that you re-create the API key after the use of this terraform script.
