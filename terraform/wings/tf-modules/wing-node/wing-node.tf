@@ -51,7 +51,7 @@ resource "hcloud_server" "node" {
   depends_on = [hcloud_ssh_key.default]
 }
 
-data "cloudflare_zones" "example" {
+data "cloudflare_zones" "domain_name_zone" {
   filter {
     name = var.dns_domain_name
   }
