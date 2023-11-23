@@ -49,3 +49,12 @@ variable "ssh_key_algorithm" {
         error_message = "Ed25519 is recommended and should not be change unless you know what you are doing."
     }
 }
+
+variable "dns_domain_name" {
+  type = string  
+}
+
+variable "dns_a_record" {
+  type = string
+  default = "wing-demo"
+}

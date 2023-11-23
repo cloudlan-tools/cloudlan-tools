@@ -1,6 +1,6 @@
 # Output the server's IP address
 output "ip_address" {
-  value = hcloud_server.web.ipv4_address
+  value = hcloud_server.node.ipv4_address
 }
 
 # Output the server's ssh private key
