@@ -145,10 +145,10 @@ variable "pterodactyl_wings_daemon_listen" {
 }
 
 variable "dns_domain_name" {
-  type = string  
+  type = string
 }
 
 variable "dns_a_record" {
-  type = string
+  type    = string
   default = "wing-demo-node"
 }

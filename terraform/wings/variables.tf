@@ -5,11 +5,11 @@ variable "hcloud_token" {
 
 variable "cloudflare_api_token" {
   sensitive = true # Requires terraform >= 0.14
-  type = string
+  type      = string
 }
 
 variable "dns_domain_name" {
-  type = string  
+  type = string
 }
 
 variable "pterodactyl_panel_url" {

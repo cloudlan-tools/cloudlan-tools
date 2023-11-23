@@ -5,22 +5,23 @@ terraform {
       source  = "hetznercloud/hcloud"
       version = ">=1.44"
     }
-    
+
     # TLS Provider
     tls = {
       source  = "hashicorp/tls"
       version = ">=4.0"
     }
-    
+
     # Cloudflare Provider
     cloudflare = {
       source  = "cloudflare/cloudflare"
       version = ">=4.18"
 
-    # REST API Provider
-    restapi = {
-      source  = "Mastercard/restapi"
-      version = ">=1.18.2"
+      # REST API Provider
+      restapi = {
+        source  = "Mastercard/restapi"
+        version = ">=1.18.2"
+      }
     }
   }
 }
@@ -82,5 +83,5 @@ resource "cloudflare_record" "node_dns_a_record" {
   ttl             = "60"
   proxied         = false
 
-  depends_on = [ hcloud_server.node ]
+  depends_on = [hcloud_server.node]
 }
