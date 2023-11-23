@@ -38,6 +38,7 @@ runcmd:
   - chmod u+x /usr/local/bin/wings
   - chmod g+x /usr/local/bin/wings
   # Setting up SSL
+  # TODO: Waiting for DNS to propagate
   - certbot certonly --standalone --agree-tos --no-eff-email --email ${email} -d ${domain}
   # Configuring wings
   - wings configure --panel-url ${pterodactyl_panel_url} --token ${pterodactyl_panel_api_key} --node ${node_id}
