@@ -55,6 +55,7 @@ jobs:
         id: version
         run: echo version=$(cat semantic-release.log | grep -oP "next release version is \K.*") >> $GITHUB_OUTPUT
       - name: Update development branch to latest release
+        if: github.ref == 'refs/heads/main'
         run: >-
           URL=$(gh pr create -B develop -H main --title 'Update develop to latest release' --body 'Merge main into develop to update the develop branch to the latest release version' --label version-update) &&
           gh pr merge $URL -t "CI: Updated version to match newest version [skip ci]" -b "This was done automatically by the CI pipeline" --merge
