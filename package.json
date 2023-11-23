@@ -1,6 +1,6 @@
 {
     "name": "@cloudlan-tools/cloudlan-tools",
-    "version": "1.0.0",
+    "version": "1.0.0-r.1",
     "description": "Tools for creating cloud servers for use with LAN parties through Pterodactyl.",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
