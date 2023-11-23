@@ -22,11 +22,6 @@ variable "pterodactyl_panel_api_key" {
   nullable = false
 }
 
-variable "domain" {
-  type     = string
-  nullable = false
-}
-
 variable "letsencrypt_email" {
   type     = string
   nullable = false

@@ -2,11 +2,11 @@
 # Required variables
 # -----------
 
-# Fully qualified domain name of the node
-variable "node_fqdn" {
+# Top level domain name
+variable "dns_domain_name" {
   type        = string
   nullable    = false
-  description = "Fully qualified domain name of the node. This should be a domain name, that points to the IP address of the node, as it will be used for the Let's Encrypt certificate and Pterodactyl Panel."
+  description = "Top level domain name for the project."
 }
 
 # Let's Encrypt email address
@@ -40,6 +40,14 @@ variable "pterodactyl_wings_location_id" {
 # -----------
 # Optional variables
 # -----------
+
+# Sub domain name for the node
+variable "dns_a_record" {
+  type        = string
+  nullable    = false
+  default     = "node"
+  description = "Sub domain name for the node. Should be unique for this node."
+}
 
 # Name of Hetzner Cloud node
 variable "node_name" {
@@ -142,13 +150,4 @@ variable "pterodactyl_wings_daemon_listen" {
   type        = number
   default     = 8080
   description = "Port on which the daemon will listen for requests."
-}
-
-variable "dns_domain_name" {
-  type = string
-}
-
-variable "dns_a_record" {
-  type    = string
-  default = "wing-demo-node"
 }

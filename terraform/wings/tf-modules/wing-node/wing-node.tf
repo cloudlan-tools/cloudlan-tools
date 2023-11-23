@@ -16,12 +16,12 @@ terraform {
     cloudflare = {
       source  = "cloudflare/cloudflare"
       version = ">=4.18"
+    }
 
-      # REST API Provider
-      restapi = {
-        source  = "Mastercard/restapi"
-        version = ">=1.18.2"
-      }
+    # REST API Provider
+    restapi = {
+      source  = "Mastercard/restapi"
+      version = ">=1.18.2"
     }
   }
 }
@@ -56,7 +56,7 @@ resource "hcloud_server" "node" {
     username                  = var.node_username
     ssh_key                   = tls_private_key.ssh.public_key_openssh
     email                     = var.letsencrypt_email
-    domain                    = var.node_fqdn
+    domain                    = "${var.dns_a_record}.${var.dns_domain_name}"
     pterodactyl_panel_url     = var.pterodactyl_panel_url
     pterodactyl_panel_api_key = var.pterodactyl_panel_api_key
     node_id                   = restapi_object.pterodactyl_node.id
@@ -76,7 +76,7 @@ data "cloudflare_zones" "domain_name_zone" {
 
 resource "cloudflare_record" "node_dns_a_record" {
   allow_overwrite = true
-  zone_id         = data.cloudflare_zones.example.zones.0.id
+  zone_id         = data.cloudflare_zones.domain_name_zone.zones.0.id
   name            = var.dns_a_record
   value           = hcloud_server.node.ipv4_address
   type            = "A"
