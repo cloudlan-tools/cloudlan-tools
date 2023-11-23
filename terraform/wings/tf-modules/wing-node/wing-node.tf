@@ -51,9 +51,15 @@ resource "hcloud_server" "node" {
   depends_on = [hcloud_ssh_key.default]
 }
 
+data "cloudflare_zones" "example" {
+  filter {
+    name = var.dns_domain_name
+  }
+}
+
 resource "cloudflare_record" "node_dns_a_record" {
-  zone_id = var.dns_domain_name
-  name    = var.dns_a_record
+  zone_id = data.cloudflare_zones.example.zones.0.id
+  name    = "${var.dns_a_record}.${var.dns_domain_name}"
   value   = hcloud_server.node.ipv4_address
   type    = "A"
   ttl     = 30
