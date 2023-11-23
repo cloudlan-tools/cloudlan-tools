@@ -16,8 +16,11 @@ jobs:
     environment: Release
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      id-token: write
+        contents: write
+        issues: write
+        pull-requests: write
+        packages: write
+        id-token: write
     outputs:
       version: ${{ steps.version.outputs.version }}
     steps:
