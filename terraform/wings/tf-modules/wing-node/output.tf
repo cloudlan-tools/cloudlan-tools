@@ -1,6 +1,6 @@
 # Output the server's IP address
 output "ip_address" {
-  value = hcloud_server.web.ipv4_address
+  value = hcloud_server.node.ipv4_address
 }
 
 # Output the server's ssh private key
@@ -9,6 +9,12 @@ output "ssh_private_key" {
   sensitive = true
 }
 
+# Output the servers username
 output "node_username" {
-  value = var.node_username    
+  value = var.node_username
+}
+
+# Output of pterodactyl node id
+output "pterodactyl_node_id" {
+  value = restapi_object.pterodactyl_node.id
 }

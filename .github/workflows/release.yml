@@ -1,0 +1,56 @@
+name: Release
+
+on:
+  push: 
+    branches:
+      - main
+      - develop
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  semantic-realease:
+    name: Semantic release
+    environment: Release
+    runs-on: ubuntu-latest
+    permissions:
+        contents: write
+        issues: write
+        pull-requests: write
+        packages: write
+        id-token: write
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+            node-version: "lts/*"
+            registry-url: https://npm.pkg.github.com/
+            scope: "@${{ github.repository_owner }}"
+            always-auth: true
+            cache: "npm"
+      - name: Install dependencies
+        run: npm clean-install --force
+      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
+        run: npm audit signatures
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+        run: npx semantic-release >> semantic-release.log
+      - name: Archive release log
+        uses: actions/upload-artifact@v3
+        with:
+          name: semantic-release.log
+          path: semantic-release.log
+      - name: Get version
+        id: version
+        run: echo version=$(cat semantic-release.log | grep -oP "next release version is \K.*") >> $GITHUB_OUTPUT

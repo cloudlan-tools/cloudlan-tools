@@ -10,3 +10,6 @@ terraform.tfstate.backup
 # Misc
 log.txt
 server.key
+
+# NPM elements
+node_modules/
