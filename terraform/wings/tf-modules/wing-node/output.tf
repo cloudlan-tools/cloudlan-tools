@@ -1,6 +1,16 @@
+# Ouput the name that has been given to the node
+output "name" {
+  value = hcloud_server.node.name
+}
+
 # Output the server's IP address
 output "ip_address" {
   value = hcloud_server.node.ipv4_address
+}
+
+# Output the server's dns subdomain
+output "dns_subdomain" {
+  value = var.dns_a_record
 }
 
 # Output the server's ssh private key

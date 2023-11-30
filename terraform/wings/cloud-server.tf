@@ -10,6 +10,16 @@ resource "restapi_object" "pterodactyl_location" {
 module "wing-node" {
   source = "./tf-modules/wing-node"
 
+  // Values unique to each node
+  for_each         = var.servers
+  dns_a_record     = each.key
+  node_name        = each.key
+  node_server_type = each.value.type
+  node_location    = each.value.location
+  node_memory      = each.value.memory
+  node_disk        = each.value.disk
+
+  // General values
   dns_domain_name = var.dns_domain_name
 
   pterodactyl_panel_url     = var.pterodactyl_panel_url
