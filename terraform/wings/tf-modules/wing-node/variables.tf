@@ -35,6 +35,7 @@ variable "pterodactyl_panel_api_key" {
 variable "pterodactyl_wings_location_id" {
   type        = number
   description = "Location ID of the node in Pterodactyl Panel."
+  nullable    = false
 }
 
 # -----------
@@ -54,6 +55,7 @@ variable "node_name" {
   type        = string
   default     = "wing-demo"
   description = "Name of the Hetzner Cloud node. This name will be used in Hetzner Cloud and Pterodactyl Panel."
+  nullable    = false
 }
 
 # Memory in MB for the node
@@ -61,6 +63,7 @@ variable "node_memory" {
   type        = number
   default     = 6144
   description = "Memory in MB for the node. This should be the same as the memory of the node choosen in `node_server_type`."
+  nullable    = false
 }
 
 # Disk size in MB for the node
@@ -68,6 +71,7 @@ variable "node_disk" {
   type        = number
   default     = 50000
   description = "Disk size in MB for the node. This should fit the memory of the node choosen in `node_server_type`."
+  nullable    = false
 }
 
 # Username for the user to be created on the node
@@ -75,6 +79,7 @@ variable "node_username" {
   type        = string
   default     = "cloudlan"
   description = "Username for the user to be created on the node. This user will be the available user for SSH at later points."
+  nullable    = false
 }
 
 # Node location in Hetzner Cloud
@@ -82,6 +87,7 @@ variable "node_location" {
   type        = string
   default     = "hel1"
   description = "Node location in Hetzner Cloud. We recommend the closest location to your users. Some of the locations are: `nbg1`, `fsn1`, `hel1`, `ash`, `hil`"
+  nullable    = false
 }
 
 # Node type in Hetzner Cloud
@@ -89,6 +95,7 @@ variable "node_server_type" {
   type        = string
   default     = "ccx13"
   description = "Node type in Hetzner Cloud. We recommend CCX type."
+  nullable    = false
 }
 
 # Enable IPv4 on the node
@@ -96,6 +103,7 @@ variable "node_ipv4_enabled" {
   type        = bool
   default     = true
   description = "IPv4 is required for the node."
+  nullable    = false
 }
 
 # Enable IPv6 on the node
@@ -103,6 +111,7 @@ variable "node_ipv6_enabled" {
   type        = bool
   default     = false
   description = "IPv6 is not supported by Pterodactyl Panel yet."
+  nullable    = false
 }
 
 # Docker image to be used for the node
@@ -116,6 +125,7 @@ variable "node_image" {
   }
 
   description = "Docker image to be used for the node. Only docker-ce is supported."
+  nullable    = false
 }
 
 # SSH key algorithm
@@ -129,6 +139,7 @@ variable "ssh_key_algorithm" {
   }
 
   description = "SSH key algorithm to be used for the node. Default is ED25519, and any other value is not recommended."
+  nullable    = false
 }
 
 # Pterodactyl Wings upload size
@@ -136,6 +147,7 @@ variable "pterodactyl_wings_upload_size" {
   type        = number
   default     = 100
   description = "Maximum upload size in MB from web panel."
+  nullable    = false
 }
 
 # Pterodactyl Wings daemon SFTP port
@@ -143,6 +155,7 @@ variable "pterodactyl_wings_daemon_sftp" {
   type        = number
   default     = 2022
   description = "Port on which the daemon will listen for SFTP connections."
+  nullable    = false
 }
 
 # Pterodactyl Wings daemon listen port
@@ -150,4 +163,5 @@ variable "pterodactyl_wings_daemon_listen" {
   type        = number
   default     = 8080
   description = "Port on which the daemon will listen for requests."
+  nullable    = false
 }
