@@ -8,7 +8,7 @@ variable "cloudflare_api_token" {
   type      = string
 }
 
-variable "dns_domain_name" {
+variable "Cloudflare_dns" {
   type = string
 }
 
@@ -47,17 +47,14 @@ variable "servers" {
   type = map(
     /** Type of node - Key is the name and dns subdomain of the node */
     object({
-      // Required values
-      /** Type of node */
-      type = string
       /** pterodactyl_locations key for location */
-      location = string
+      location = optional(string)
+      /** Type of node */
+      type = optional(string)
       /** Memory in MB for the node */
-      memory = number
+      memory = optional(number)
       /** Disk size in MB for the node */
-      disk = number
-
-      // Optional values
+      disk = optional(number)
       /** DNS subdomain */
       dns_subdomain = optional(string)
       /** Username for the node */
@@ -78,3 +75,29 @@ variable "servers" {
   nullable    = false
   description = "Map of servers to create. Key is the name and dns subdomain of the node. Value is an object with the following keys: type, location, memory, disk."
 }
+
+variable "default_server_type" {
+  type        = string
+  description = "Default server type to use if not specified in servers map"
+  default     = "ccx13" # 2vCPU, 8GB RAM, 80GB SSD
+}
+
+variable "default_server_location" {
+  type        = string
+  description = "Default location to use if not specified in servers map"
+  default     = "default"
+}
+
+variable "default_server_memory" {
+  type        = number
+  description = "Default memory to use if not specified in servers map"
+  default     = 7000 # 7GB, allowing for 1GB for the OS
+}
+
+variable "default_server_disk" {
+  type        = number
+  description = "Default disk to use if not specified in servers map"
+  default     = 70000 # 70GB, allowing for 10GB for the OS
+}
+
+

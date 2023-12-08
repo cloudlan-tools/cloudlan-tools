@@ -3,7 +3,7 @@
 # -----------
 
 # Top level domain name
-variable "dns_domain_name" {
+variable "Cloudflare_dns" {
   type        = string
   nullable    = false
   description = "Top level domain name for the project."

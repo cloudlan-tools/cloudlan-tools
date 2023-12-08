@@ -7,7 +7,7 @@ output "ip_address" {
 
 output "dns_subdomain" {
   value = {
-    for node in module.wing-node : node.name => "${node.dns_subdomain}.${var.dns_domain_name}"
+    for node in module.wing-node : node.name => "${node.dns_subdomain}.${var.Cloudflare_dns}"
   }
 }
 

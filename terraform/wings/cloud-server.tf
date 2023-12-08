@@ -15,12 +15,12 @@ module "wing-node" {
 
   // Values unique to each node
   for_each         = var.servers
-  dns_a_record     = coalesce(each.value.dns_subdomain, each.key)
   node_name        = each.key
-  node_server_type = each.value.type
-  node_location    = var.pterodactyl_locations[each.value.location].datacenter
-  node_memory      = each.value.memory
-  node_disk        = each.value.disk
+  node_location    = var.pterodactyl_locations[coalesce(each.value.location, var.default_server_location)].datacenter
+  dns_a_record     = coalesce(each.value.dns_subdomain, each.key)
+  node_server_type = coalesce(each.value.type, var.default_server_type)
+  node_memory      = coalesce(each.value.memory, var.default_server_memory)
+  node_disk        = coalesce(each.value.disk, var.default_server_disk)
 
   // Optional values
   node_username                   = each.value.username
@@ -31,14 +31,13 @@ module "wing-node" {
   pterodactyl_wings_daemon_listen = each.value.pterodactyl_wings_daemon_listen
 
   // General values
-  dns_domain_name = var.dns_domain_name
+  Cloudflare_dns    = var.Cloudflare_dns
+  letsencrypt_email = var.letsencrypt_email
 
   pterodactyl_panel_url     = var.pterodactyl_panel_url
   pterodactyl_panel_api_key = var.pterodactyl_panel_api_key
 
-  letsencrypt_email = var.letsencrypt_email
-
-  pterodactyl_wings_location_id = coalesce(each.value.pterodactyl_wings_location_id, restapi_object.pterodactyl_location["${each.value.location}"].id)
+  pterodactyl_wings_location_id = coalesce(each.value.pterodactyl_wings_location_id, restapi_object.pterodactyl_location["${coalesce(each.value.location, var.default_server_location)}"].id)
 
   depends_on = [
     restapi_object.pterodactyl_location
