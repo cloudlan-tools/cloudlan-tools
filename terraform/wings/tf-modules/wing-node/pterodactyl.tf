@@ -4,7 +4,7 @@ resource "restapi_object" "pterodactyl_node" {
   data = jsonencode({
     "name" : "${var.node_name}",
     "location_id" : "${var.pterodactyl_wings_location_id}",
-    "fqdn" : "${var.dns_a_record}.${var.dns_domain_name}",
+    "fqdn" : "${var.dns_a_record}.${var.Cloudflare_dns}",
     "scheme" : "https",
     "memory" : "${var.node_memory}",
     "memory_overallocate" : -1,
