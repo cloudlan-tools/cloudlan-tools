@@ -58,6 +58,8 @@ variable "servers" {
       disk = number
 
       // Optional values
+      /** DNS subdomain */
+      dns_subdomain = optional(string)
       /** Username for the node */
       username = optional(string)
       /** Whether IPv4 is enabled for the node */

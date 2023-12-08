@@ -37,6 +37,7 @@ servers = { # Map of servers to create
     location                        = "germany", # The location to create the server in - Should be a key of pterodactyl_locations
     memory                          = 15048,     # The amount of memory to allocate to the pterodactyl system in MB
     disk                            = 35000,     # The amount of disk space to allocate to the pterodactyl system in MB
+    dns_subdomain                   = "my-dns",  # The subdomain to use for the server - If not provided, the key of the server will be used
     username                        = "admin",   # The username to use for the server
     ipv4_enabled                    = true,      # Enable IPv4 for the server
     ipv6_enabled                    = false,     # Enable IPv6 for the server

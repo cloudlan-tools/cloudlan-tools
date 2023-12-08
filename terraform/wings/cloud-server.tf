@@ -15,7 +15,7 @@ module "wing-node" {
 
   // Values unique to each node
   for_each         = var.servers
-  dns_a_record     = each.key
+  dns_a_record     = coalesce(each.value.dns_subdomain, each.key)
   node_name        = each.key
   node_server_type = each.value.type
   node_location    = var.pterodactyl_locations[each.value.location].datacenter
