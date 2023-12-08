@@ -9,7 +9,8 @@
 
 ## Start
 
-*Create a file named `tfvars/data.tfvars` which should be a filled out copy of `tfvars/template.tfvars`*
+*Create a file named `tfvars/data.tfvars` which should be a filled out copy of `tfvars/template.tfvars`.*  
+*Read more about the variables in the [Configuration](#configuration) section.*
 
 ```bash
 terraform init
@@ -18,7 +19,29 @@ terraform apply -var-file tfvars/data.tfvars
 terraform destroy -var-file tfvars/data.tfvars
 ```
 
-## Log in
+## Configuration
+
+To run the application, a `tfvars/data.tfvars` file is required.  
+A template for this file can be found in `tfvars/template.tfvars`, which include all the variables that can be set, with reasonable defaults already set.
+
+### Variables
+
+| Variable                    | Description                 | Notes                                                                                                                                                   |
+| --------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `hcloud_token`              | The Hetzner Cloud API token | This is obtained from the Hetzner Cloud console, on a per-project basis.                                                                                |
+| `cloudflare_api_token`      | The Cloudflare API token    | Use the template for "DNS:Edit" when defining the privileges for the token.                                                                             |
+| `Cloudflare_dns`            | The Cloudflare DNS zone     | The domain name that is hosted on Cloudflare.                                                                                                           |
+| `pterodactyl_panel_url`     | The Pterodactyl panel URL   | The URL to the Pterodactyl panel.                                                                                                                       |
+| `pterodactyl_panel_api_key` | The Pterodactyl API key     | The API key for the Pterodactyl panel. Needs to be an Application API key.                                                                              |
+| `letsencrypt_email`         | The LetsEncrypt email       | The email used for SSL certificates on each node.                                                                                                       |
+| `pterodactyl_locations`     | The Pterodactyl locations   | The locations to create servers in. This is a map of locations, with their key being used in the creation of servers. See template for more information |
+| `servers`                   | The servers to create       | The servers to create. This is a map of servers, with their key being used in the creation of servers. See template for more information                |
+
+<!-- The following information is outdated because the server is now created in arrays instead of a single server. 
+## Extra information
+-->
+
+<!-- ### Log in
 
 ```bash
 terraform output -raw ssh_private_key > server.key && sudo chmod 700 server.key
@@ -29,7 +52,7 @@ To remove a known host do:
 
 ```bash
 ssh-keygen -R "<IP address>"
-```
+``` -->
 
 ## Disclaimers
 
