@@ -26,26 +26,26 @@ A template for this file can be found in `tfvars/template.tfvars`, which include
 
 ### Variables
 
-| Variable                    | Description                 | Notes                                                                                                                                                   |
-| --------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `hcloud_token`              | The Hetzner Cloud API token | This is obtained from the Hetzner Cloud console, on a per-project basis.                                                                                |
-| `cloudflare_api_token`      | The Cloudflare API token    | Use the template for "DNS:Edit" when defining the privileges for the token.                                                                             |
-| `Cloudflare_dns`            | The Cloudflare DNS zone     | The domain name that is hosted on Cloudflare.                                                                                                           |
-| `pterodactyl_panel_url`     | The Pterodactyl panel URL   | The URL to the Pterodactyl panel.                                                                                                                       |
-| `pterodactyl_panel_api_key` | The Pterodactyl API key     | The API key for the Pterodactyl panel. Needs to be an Application API key.                                                                              |
-| `letsencrypt_email`         | The LetsEncrypt email       | The email used for SSL certificates on each node.                                                                                                       |
-| `pterodactyl_locations`     | The Pterodactyl locations   | The locations to create servers in. This is a map of locations, with their key being used in the creation of servers. See template for more information |
-| `servers`                   | The servers to create       | The servers to create. This is a map of servers, with their key being used in the creation of servers. See template for more information                |
+| Variable                    | Description                 | Notes                                                                                                                                               |
+| --------------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `hcloud_token`              | The Hetzner Cloud API token | This is obtained from the Hetzner Cloud console, on a per-project basis.                                                                            |
+| `cloudflare_api_token`      | The Cloudflare API token    | Use the template for "DNS:Edit" when defining the privileges for the token.                                                                         |
+| `Cloudflare_dns`            | The Cloudflare DNS zone     | The domain name that is hosted on Cloudflare.                                                                                                       |
+| `pterodactyl_panel_url`     | The Pterodactyl panel URL   | The URL to the Pterodactyl panel.                                                                                                                   |
+| `pterodactyl_panel_api_key` | The Pterodactyl API key     | The API key for the Pterodactyl panel. Needs to be an Application API key.                                                                          |
+| `letsencrypt_email`         | The LetsEncrypt email       | The email used for SSL certificates on each node.                                                                                                   |
+| `pterodactyl_locations`     | The Pterodactyl locations   | The locations to create nodes in. This is a map of locations, with their key being used in the creation of nodes. See template for more information |
+| `nodes`                     | The nodes to create         | The nodes to create. This is a map of nodes, with their key being used in the creation of nodes. See template for more information                  |
 
-<!-- The following information is outdated because the server is now created in arrays instead of a single server. 
+<!-- The following information is outdated because the node is now created in arrays instead of a single node. 
 ## Extra information
 -->
 
 <!-- ### Log in
 
 ```bash
-terraform output -raw ssh_private_key > server.key && sudo chmod 700 server.key
-ssh -i server.key $(terraform output -raw node_username)@$(terraform output -raw ip_address)
+terraform output -raw ssh_private_key > node.key && sudo chmod 700 node.key
+ssh -i node.key $(terraform output -raw node_username)@$(terraform output -raw ip_address)
 ```
 
 To remove a known host do:

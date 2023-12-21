@@ -14,13 +14,13 @@ module "wing-node" {
   source = "./tf-modules/wing-node"
 
   // Values unique to each node
-  for_each         = var.servers
+  for_each         = var.nodes
   node_name        = each.key
-  node_location    = var.pterodactyl_locations[coalesce(each.value.location, var.default_server_location)].datacenter
+  node_location    = var.pterodactyl_locations[coalesce(each.value.location, var.default_node_location)].datacenter
   dns_a_record     = coalesce(each.value.dns_subdomain, each.key)
-  node_server_type = coalesce(each.value.type, var.default_server_type)
-  node_memory      = coalesce(each.value.memory, var.default_server_memory)
-  node_disk        = coalesce(each.value.disk, var.default_server_disk)
+  node_server_type = coalesce(each.value.type, var.default_node_location)
+  node_memory      = coalesce(each.value.memory, var.default_node_memory)
+  node_disk        = coalesce(each.value.disk, var.default_node_disk)
 
   // Optional values
   node_username                   = each.value.username
@@ -37,7 +37,7 @@ module "wing-node" {
   pterodactyl_panel_url     = var.pterodactyl_panel_url
   pterodactyl_panel_api_key = var.pterodactyl_panel_api_key
 
-  pterodactyl_wings_location_id = coalesce(each.value.pterodactyl_wings_location_id, restapi_object.pterodactyl_location["${coalesce(each.value.location, var.default_server_location)}"].id)
+  pterodactyl_wings_location_id = coalesce(each.value.pterodactyl_wings_location_id, restapi_object.pterodactyl_location["${coalesce(each.value.location, var.default_node_location)}"].id)
 
   depends_on = [
     restapi_object.pterodactyl_location
