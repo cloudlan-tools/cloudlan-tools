@@ -165,3 +165,18 @@ variable "pterodactyl_wings_daemon_listen" {
   description = "Port on which the daemon will listen for requests."
   nullable    = false
 }
+
+# Allocations of the node
+# Allocation being a port on the node, that is being reserved to be used for the system
+# This is required if a game server is to use the specified port
+variable "pterodactyl_ports_allocation" {
+  type = list(string)
+  default = [
+    "25565",
+    "27015",
+    "27030"
+  ]
+
+  nullable    = false
+  description = "Allocations of the node. Allocation being a port on the node, that is being reserved to be used for the system. This is required if a game server is to use the specified port. Formatted as a list of ports, either as individual numbers, or as ranges (e.g. [25565, 25566, 25567-25569])."
+}
