@@ -56,7 +56,7 @@ resource "hcloud_server" "node" {
     username                  = var.node_username
     ssh_key                   = tls_private_key.ssh.public_key_openssh
     email                     = var.letsencrypt_email
-    domain                    = "${var.dns_a_record}.${var.dns_domain_name}"
+    domain                    = "${var.dns_a_record}.${var.Cloudflare_dns}"
     pterodactyl_panel_url     = var.pterodactyl_panel_url
     pterodactyl_panel_api_key = var.pterodactyl_panel_api_key
     node_id                   = restapi_object.pterodactyl_node.id
@@ -70,7 +70,7 @@ resource "hcloud_server" "node" {
 
 data "cloudflare_zones" "domain_name_zone" {
   filter {
-    name = var.dns_domain_name
+    name = var.Cloudflare_dns
   }
 }
 
