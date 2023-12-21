@@ -179,4 +179,20 @@ variable "pterodactyl_ports_allocation" {
 
   nullable    = false
   description = "Allocations of the node. Allocation being a port on the node, that is being reserved to be used for the system. This is required if a game server is to use the specified port. Formatted as a list of ports, either as individual numbers, or as ranges (e.g. [25565, 25566, 25567-25569])."
+
+  validation {
+    condition = alltrue([
+      for port in var.pterodactyl_ports_allocation : (
+        length(regexall("\\d{4,5}-\\d{4,5}", port)) > 0 ? (
+          length(split("-", port)) == 2 &&
+          can(parseint(element(split("-", port), 0), 10)) && parseint(element(split("-", port), 0), 10) >= 1024 && parseint(element(split("-", port), 0), 10) <= 65535 &&
+          can(parseint(element(split("-", port), 1), 10)) && parseint(element(split("-", port), 1), 10) >= 1024 && parseint(element(split("-", port), 1), 10) <= 65535 &&
+          (parseint(element(split("-", port), 1), 10) - parseint(element(split("-", port), 0), 10) + 1) <= 1000
+        ) : (
+          can(parseint(port, 10)) && parseint(port, 10) >= 1024 && parseint(port, 10) <= 65535
+        )
+      )
+    ])
+    error_message = "All port numbers must be valid (1024-65535) or a valid range (e.g., 27015-27030), and the size of each range must not exceed 1000 ports."
+  }
 }

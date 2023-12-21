@@ -111,5 +111,3 @@ variable "default_pterodactyl_ports_allocation" {
     "27030"
   ]
 }
-
-
