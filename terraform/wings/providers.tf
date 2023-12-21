@@ -47,6 +47,7 @@ provider "restapi" {
   headers = {
     "Authorization" = "Bearer ${var.pterodactyl_panel_api_key}"
     "Content-Type"  = "application/json"
+    "Accept"        = "application/json"
   }
 
   id_attribute   = "attributes/id"
