@@ -29,10 +29,10 @@ letsencrypt_email = "<email>" # The email address used for Let's Encrypt
 # The key is used in the nodes map to specify the location of the node.
 pterodactyl_locations = {
   # Default location. If you want just one location, you can just change the needed values here. This includes what datacenter to use.
-  "default" = {                           # Key provides the name of the location
-    short      = "CloudLAN",              # The short name of the location
+  "default" = {                         # Key provides the name of the location
+    short      = "CloudLAN",            # The short name of the location
     long       = "Auto-deployed nodes", # The long name of the location
-    datacenter = "hel1",                  # The Hetzner Cloud datacenter to create the node in
+    datacenter = "hel1",                # The Hetzner Cloud datacenter to create the node in
   },
   # Additional locations. If you want to add more locations, for example, one for each datacenter. Included is a number of Hetzner Cloud datacenters.
   # Europe
@@ -73,7 +73,7 @@ nodes = {
   "node-1" = {}, # Standard node, with the key of the node being used as the subdomain
 
   # Minimal configuration for changing node type
-  # "node-2" = {          # Key provides the name and subdomain of the node
+  # "node-2" = {            # Key provides the name and subdomain of the node
   #   location = "default", # The location to create the node in - Should be a key of pterodactyl_locations
   #   type     = "ccx23",   # The node type to use
   #   memory   = 15000,     # The amount of memory to allocate to the pterodactyl system in MB
@@ -81,24 +81,26 @@ nodes = {
   # }
 
   # Full configuration
-  # "node-3" = {                                 # Key provides the name and subdomain of the node
-  #   location                        = "default", # The location to create the node in - Should be a key of pterodactyl_locations
-  #   type                            = "ccx23",   # The node type to use
-  #   memory                          = 15000,     # The amount of memory to allocate to the pterodactyl system in MB
-  #   disk                            = 35000,     # The amount of disk space to allocate to the pterodactyl system in MB
-  #   dns_subdomain                   = "custom",  # The subdomain to use for the node - If not provided, the key of the node will be used
-  #   username                        = "admin",   # The username to use for the node
-  #   ipv4_enabled                    = true,      # Enable IPv4 for the node
-  #   ipv6_enabled                    = false,     # Enable IPv6 for the node
-  #   pterodactyl_wings_upload_size   = 100,       # The maximum upload size in MB
-  #   pterodactyl_wings_daemon_sftp   = 2022,      # The port to listen on for the SFTP node
-  #   pterodactyl_wings_daemon_listen = 8080,      # The port to listen on for the Wings node
-  #   # pterodactyl_wings_location_id = 1,         # The location ID of the Wings node - Can be used, if you want to use a pre-defined location in Pterodactyl
+  # "node-3" = {                                                  # Key provides the name and subdomain of the node
+  #   location                        = "default",                # The location to create the node in - Should be a key of pterodactyl_locations
+  #   type                            = "ccx23",                  # The node type to use
+  #   memory                          = 15000,                    # The amount of memory to allocate to the pterodactyl system in MB
+  #   disk                            = 35000,                    # The amount of disk space to allocate to the pterodactyl system in MB
+  #   dns_subdomain                   = "custom",                 # The subdomain to use for the node - If not provided, the key of the node will be used
+  #   username                        = "admin",                  # The username to use for the node
+  #   ipv4_enabled                    = true,                     # Enable IPv4 for the node
+  #   ipv6_enabled                    = false,                    # Enable IPv6 for the node
+  #   pterodactyl_ports_allocation    = ["25565", "25570-25580"], # The ports to allocate to the pterodactyl system
+  #   pterodactyl_wings_upload_size   = 100,                      # The maximum upload size in MB
+  #   pterodactyl_wings_daemon_sftp   = 2022,                     # The port to listen on for the SFTP node
+  #   pterodactyl_wings_daemon_listen = 8080,                     # The port to listen on for the Wings node
+  #   # pterodactyl_wings_location_id   = 1,                      # The location ID of the Wings node - Can be used, if you want to use a pre-defined location in Pterodactyl
   # }
 }
 
 # Default node specifications
-# default_node_location = "default" # The location to create nodes in that do not have a location specified
-# default_node_type     = "ccx13"   # The node type to use for nodes that do not have a type specified
-# default_node_memory   = 7000      # The amount of memory to allocate to the pterodactyl system in MB for nodes that do not have a memory specified
-# default_node_disk     = 70000     # The amount of disk space to allocate to the pterodactyl system in MB for nodes that do not have a disk specified
+# default_node_location                = "default"                   # The location to create nodes in that do not have a location specified
+# default_node_type                    = "ccx13"                     # The node type to use for nodes that do not have a type specified
+# default_node_memory                  = 7000                        # The amount of memory to allocate to the pterodactyl system in MB for nodes that do not have a memory specified
+# default_node_disk                    = 70000                       # The amount of disk space to allocate to the pterodactyl system in MB for nodes that do not have a disk specified
+# default_pterodactyl_ports_allocation = ["25565", "27015", "27030"] # The default ports to allocate to the pterodactyl system for nodes that do not have a ports allocation specified

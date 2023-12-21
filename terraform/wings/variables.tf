@@ -63,6 +63,8 @@ variable "nodes" {
       ipv4_enabled = optional(bool)
       /** Whether IPv6 is enabled for the node */
       ipv6_enabled = optional(bool)
+      /** Pterodactyl ports allocation - Is set to default_pterodactyl_ports_allocation if not set */
+      pterodactyl_ports_allocation = optional(list(string))
       /** Pterodactyl Wings upload size */
       pterodactyl_wings_upload_size = optional(number)
       /** Pterodactyl Wings daemon sftp port */
@@ -100,4 +102,12 @@ variable "default_node_disk" {
   default     = 70000 # 70GB, allowing for 10GB for the OS
 }
 
-
+variable "default_pterodactyl_ports_allocation" {
+  type        = list(string)
+  description = "Default port allocation to use if not specified in nodes map"
+  default = [
+    "25565",
+    "27015",
+    "27030"
+  ]
+}
