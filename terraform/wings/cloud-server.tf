@@ -18,7 +18,7 @@ module "wing-node" {
   node_name        = each.key
   node_location    = var.pterodactyl_locations[coalesce(each.value.location, var.default_node_location)].datacenter
   dns_a_record     = coalesce(each.value.dns_subdomain, each.key)
-  node_server_type = coalesce(each.value.type, var.default_node_location)
+  node_server_type = coalesce(each.value.type, var.default_node_type)
   node_memory      = coalesce(each.value.memory, var.default_node_memory)
   node_disk        = coalesce(each.value.disk, var.default_node_disk)
 
