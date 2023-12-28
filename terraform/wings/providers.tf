@@ -1,6 +1,6 @@
 terraform {
-  #Required terraform version
-  required_version = ">= 1.6.2"
+  #Required opentofu version
+  required_version = ">= 1.6"
   # Required providers
   required_providers {
     # Hetzner Cloud Provider
