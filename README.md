@@ -2,7 +2,7 @@
 
 ## Requirements
 
-* Terraform/OpenTofu 1.6.0+
+* Terraform/OpenTofu 1.6.0+ [Guide](https://opentofu.org/docs/intro/install/)
 * A Hetzner Cloud account with an API token [Guide](https://docs.hetzner.com/cloud/api/getting-started/generating-api-token/)
 * A Domain name hosted at cloudflare with an API token [Guide](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/)
   * Use the template for "DNS:Edit" when defining the privileges for the token.
