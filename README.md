@@ -1,3 +1,7 @@
+<p align="center" width="100%" style="margin-bottom: 3rem">
+  <img src="./docs/logo/cloudlan%20logo.png" style="max-width: 40rem;" alt="CloudLAN Tools logo" />
+</p>
+
 # Terraform/OpenTofu for Pterodactyl wings
 
 ## Requirements
