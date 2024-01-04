@@ -63,6 +63,8 @@ tofu apply -var-file tfvars/data.tfvars
 tofu destroy -var-file tfvars/data.tfvars
 ```
 
+*To use Terraform instead of OpenTofu, replace `tofu` with `terraform` in the commands above.*
+
 ## Configuration
 
 To run the application, a `tfvars/data.tfvars` file is required.  
