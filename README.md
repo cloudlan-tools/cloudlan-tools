@@ -108,7 +108,7 @@ To ensure a smooth process, please please read out [CONTRIBUTING.md](https://git
 
 ## Authors  
 
-The CloudLan Tools is a project by [CloudLan](https://cloudlan.org/).  
+The CloudLan Tools is a project by [CloudLan](https://github.com/cloudlan-tools).  
 
 The project is currently developed and maintained by the following people:
 
