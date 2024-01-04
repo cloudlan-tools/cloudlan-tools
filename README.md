@@ -13,10 +13,12 @@ Then see the [Start](#start) section for how to run the script.
 
 ## Requirements
 
-* Terraform/OpenTofu 1.6.0+ [Guide](https://opentofu.org/docs/intro/install/)
-* A Hetzner Cloud account with an API token [Guide](https://docs.hetzner.com/cloud/api/getting-started/generating-api-token/)
-* A Domain name hosted at cloudflare with an API token [Guide](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/)
+* [Terraform](https://www.terraform.io/)/[OpenTofu](https://opentofu.org/) 1.6.0+ | [Guide](https://opentofu.org/docs/intro/install/)
+* A [Hetzner Cloud](https://www.hetzner.com/cloud) account with an API token | [Guide](https://docs.hetzner.com/cloud/api/getting-started/generating-api-token/)
+* A Domain name hosted at [Cloudflare](https://cloudflare.com) with an API token | [Guide](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/)
   * Use the template for "DNS:Edit" when defining the privileges for the token.
+* A [PteroDactyl panel](https://pterodactyl.io/) with an API key | [Guide](https://dashflo.net/docs/api/pterodactyl/v1/)
+  * The API key needs to be an Application API key.
 
 ## Start
 
