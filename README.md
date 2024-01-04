@@ -34,7 +34,8 @@ This is the directory you should be in, when running the commands. To enter, run
 cd terraform/pterodactyl-wings-node
 ```
 
-From here, you need to set up the `tfvars/data.tfvars` file, and then go to the [Run the script](#run-the-script) section.
+From here, you need to set up the `tfvars/data.tfvars` file, following the [configuration](#configuration).  
+[See below](#run-the-script) for how to run the script.
 
 ### Run the script
 
