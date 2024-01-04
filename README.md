@@ -1,8 +1,12 @@
-# Terraform for Pterodactyl wings
+<p align="center" width="100%" style="margin-bottom: 3rem">
+  <img src="./docs/logo/cloudlan%20logo.png" style="max-width: 40rem;" alt="CloudLAN Tools logo" />
+</p>
+
+# Terraform/OpenTofu for Pterodactyl wings
 
 ## Requirements
 
-* Terraform 1.6.2+
+* Terraform/OpenTofu 1.6.0+ [Guide](https://opentofu.org/docs/intro/install/)
 * A Hetzner Cloud account with an API token [Guide](https://docs.hetzner.com/cloud/api/getting-started/generating-api-token/)
 * A Domain name hosted at cloudflare with an API token [Guide](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/)
   * Use the template for "DNS:Edit" when defining the privileges for the token.
@@ -13,10 +17,10 @@
 *Read more about the variables in the [Configuration](#configuration) section.*
 
 ```bash
-terraform init
-terraform plan -var-file tfvars/data.tfvars
-terraform apply -var-file tfvars/data.tfvars
-terraform destroy -var-file tfvars/data.tfvars
+tofu init
+tofu plan -var-file tfvars/data.tfvars
+tofu apply -var-file tfvars/data.tfvars
+tofu destroy -var-file tfvars/data.tfvars
 ```
 
 ## Configuration
@@ -44,8 +48,8 @@ A template for this file can be found in `tfvars/template.tfvars`, which include
 <!-- ### Log in
 
 ```bash
-terraform output -raw ssh_private_key > node.key && sudo chmod 700 node.key
-ssh -i node.key $(terraform output -raw node_username)@$(terraform output -raw ip_address)
+tofu output -raw ssh_private_key > node.key && sudo chmod 700 node.key
+ssh -i node.key $(tofu output -raw node_username)@$(tofu output -raw ip_address)
 ```
 
 To remove a known host do:
@@ -61,4 +65,4 @@ ssh-keygen -R "<IP address>"
 The Pterodactyl API key, is sent of to the Hetzner node, through cloud-init.  
 This is not an optimal secure way of doing it, but it is the only way I have found to do it. 
 
-We therefore *recommend* that you re-create the API key after the use of this terraform script.
+We therefore *recommend* that you re-create the API key after the use of this tofu script.
