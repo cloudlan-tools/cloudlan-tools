@@ -29,11 +29,11 @@ git clone https://github.com/cloudlan-tools/cloudlan-tools
 cd cloudlan-tools
 ```
 
-The Pterodactyl wings node project is located in `terraform/pterodactyl-wings-node`.  
+The Pterodactyl wings node project is located in `terraform/wings`.  
 This is the directory you should be in, when running the commands. To enter, run:
 
 ```bash
-cd terraform/pterodactyl-wings-node
+cd terraform/wings
 ```
 
 From here, you need to set up the `tfvars/data.tfvars` file, following the [configuration](#configuration).  
