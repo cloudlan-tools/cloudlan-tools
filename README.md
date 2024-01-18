@@ -2,6 +2,8 @@
   <img src="https://github.com/cloudlan-tools/.github/blob/main/assets/logo/cloudlan%20logo.png" style="max-width: 40rem;" alt="CloudLAN Tools logo" />
 </p>
 
+![GitHub license](https://img.shields.io/github/license/cloudlan-tools/cloudlan-tools) ![GitHub issues](https://img.shields.io/github/issues/cloudlan-tools/cloudlan-tools) ![GitHub pull requests](https://img.shields.io/github/issues-pr/cloudlan-tools/cloudlan-tools) ![GitHub last commit](https://img.shields.io/github/last-commit/cloudlan-tools/cloudlan-tools) ![GitHub milestone details](https://img.shields.io/github/milestones/progress-percent/cloudlan-tools/cloudlan-tools/1?color=%2341bb13)
+
 # Terraform/OpenTofu for Pterodactyl wings
 
 This repository contains a [Terraform](https://www.terraform.io/)/[OpenTofu](https://opentofu.org/) module for creating a [Pterodactyl](https://pterodactyl.io/) wings node on [Hetzner Cloud](https://www.hetzner.com/cloud) using [OpenTofu](https://opentofu.org/).
