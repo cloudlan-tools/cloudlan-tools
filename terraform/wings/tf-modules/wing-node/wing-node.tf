@@ -50,7 +50,7 @@ resource "cloudflare_record" "node_dns_a_record" {
   allow_overwrite = true
   zone_id         = data.cloudflare_zones.domain_name_zone.zones.0.id
   name            = var.dns_a_record
-  value           = hcloud_server.node.ipv4_address
+  content         = hcloud_server.node.ipv4_address
   type            = "A"
   ttl             = "60"
   proxied         = false
