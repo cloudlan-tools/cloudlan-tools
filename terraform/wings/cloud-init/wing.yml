@@ -38,7 +38,7 @@ runcmd:
   - chmod u+x /usr/local/bin/wings
   - chmod g+x /usr/local/bin/wings
   # Waiting for DNS to propagate
-  - IP=$(curl -s http://ifconfig.me); while [ "$(dig +short ${domain})" != "$IP" ]; do echo "Waiting for DNS to propagate"; sleep 5; done
+  - IP=$(curl -s http://ipv4.icanhazip.com/); while [ "$(dig +short ${domain})" != "$IP" ]; do echo "Waiting for DNS to propagate"; sleep 5; done
   - echo "DNS has propagated"  
   # Setting up SSL
   - certbot certonly --standalone --agree-tos --no-eff-email --email ${email} -d ${domain}
