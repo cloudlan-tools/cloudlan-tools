@@ -14,6 +14,6 @@ env:
 jobs:
   release:
     name: Release
-    uses: the0mikkel/ci/.github/workflows/semver-release-standalone.yml@v1.4.1
+    uses: the0mikkel/ci/.github/workflows/semver-release-standalone.yml@v1.4.2
     with:
       ENVIRONMENT: Release
