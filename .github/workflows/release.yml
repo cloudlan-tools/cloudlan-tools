@@ -12,53 +12,8 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  semantic-realease:
-    name: Semantic release
-    environment: Release
-    runs-on: ubuntu-latest
-    permissions:
-        contents: write
-        issues: write
-        pull-requests: write
-        packages: write
-        id-token: write
-    outputs:
-      version: ${{ steps.version.outputs.version }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-            node-version: "21"
-            registry-url: https://npm.pkg.github.com/
-            scope: "@${{ github.repository_owner }}"
-            always-auth: true
-            cache: "npm"
-      - name: Install dependencies
-        run: npm clean-install --force
-      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
-        run: npm audit signatures
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
-        run: npx semantic-release >> semantic-release.log
-      - name: Archive release log
-        uses: actions/upload-artifact@v4
-        with:
-          name: semantic-release.log
-          path: semantic-release.log
-      - name: Get version
-        id: version
-        run: echo version=$(cat semantic-release.log | grep -oP "next release version is \K.*") >> $GITHUB_OUTPUT
-      - name: Update development branch to latest release
-        if: github.ref == 'refs/heads/main'
-        run: >-
-          URL=$(gh pr create -B develop -H main --title 'Update develop to latest release' --body 'Merge main into develop to update the develop branch to the latest release version' --label version-update) &&
-          gh pr merge $URL -t "CI: Updated version to match newest version [skip ci]" -b "This was done automatically by the CI pipeline" --merge
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  release:
+    name: Release
+    uses: the0mikkel/ci/.github/workflows/semver-release-standalone.yml@v1.4.2
+    with:
+      ENVIRONMENT: Release
