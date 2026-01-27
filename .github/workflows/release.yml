@@ -48,7 +48,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
         run: npx semantic-release >> semantic-release.log
       - name: Archive release log
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: semantic-release.log
           path: semantic-release.log
