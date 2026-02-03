@@ -15,5 +15,9 @@ jobs:
   release:
     name: Release
     uses: the0mikkel/ci/.github/workflows/semver-release-standalone.yml@v1.4.2
+    permissions:
+      contents: write
+      packages: write
+      id-token: write
     with:
       ENVIRONMENT: Release
