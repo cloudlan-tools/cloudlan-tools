@@ -12,7 +12,7 @@ terraform {
     # Cloudflare Provider
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "=4.52"
+      version = "5.28.1"
     }
 
     # TLS Provider
